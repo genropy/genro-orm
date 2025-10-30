@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "genro-orm"
+version = "0.1.0"
+description = "ORM layer for the Genropy framework"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Genropy Team", email = "info@genropy.org"}
+]
+keywords = ["orm", "database", "genropy"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Database",
+]
+
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/genropy/genro-orm"
+Documentation = "https://genro-orm.readthedocs.io"
+Repository = "https://github.com/genropy/genro-orm"
+"Bug Tracker" = "https://github.com/genropy/genro-orm/issues"
+
+[tool.setuptools]
+packages = ["genro_orm"]
+
+[tool.setuptools.package-data]
+genro_orm = ["py.typed"]
+
+[tool.black]
+line-length = 100
+target-version = ["py39"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=genro_orm --cov-report=term-missing"
+markers = [
+    "integration: Integration tests that require database connections",
+    "unit: Fast unit tests with no external dependencies",
+]
